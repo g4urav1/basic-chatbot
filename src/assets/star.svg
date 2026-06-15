@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="2 0.5 12 14"
+     fill="none">
+
+  <!-- Hexagon -->
+  <path
+    d="M8 1.5L13 4.4V10.6L8 13.5L3 10.6V4.4L8 1.5Z"
+    stroke="white"
+    stroke-width="1"
+    stroke-linejoin="round"
+  />
+
+  <!-- Main sparkle -->
+  <path
+    d="M7.2 5.0L8.0 6.7L9.7 7.5L8.0 8.3L7.2 10.0L6.4 8.3L4.7 7.5L6.4 6.7L7.2 5.0Z"
+    fill="white"
+  />
+
+  <!-- Small sparkle -->
+  <path
+    d="M10.2 5.0L10.5 5.7L11.5 6.0L10.5 6.3L10.2 7.0L9.9 6.3L8.9 6.0L9.9 5.7L10.2 5.0Z"
+    fill="white"
+  />
+</svg>
