@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { Check, ChevronDown, LucideAtom, Sparkle, Sparkles, X, MessageCircleDashed  } from "lucide-react";
+import React, { useContext, useState } from "react";
+import { ChevronDown, Sparkle, Sparkles, LucideAtom, Check, MessageCircleDashed } from "lucide-react";
 import hamburger from "../assets/hamburgermenu.svg";
+import { LoginBoxContext, SidebarContext } from "../context/context";
 
-export default function LoginNav() {
+export default function LogoutNav() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+ const {showLogin, setShowLogin} = useContext(LoginBoxContext);
+    const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
+
     return (
         <>
             <nav className="flex items-center justify-between p-3 md:px-6 md:py-4 bg-[#000000] text-white">

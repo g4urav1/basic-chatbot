@@ -1,0 +1,123 @@
+import React, { useState, useEffect, useContext } from "react";
+import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, X, LifeBuoy, Folder, Grid2X2, Badge, Columns3 } from "lucide-react";
+import star from "../assets/star.svg";
+import help from "../assets/help.svg";
+import sidebaricon from "../assets/sidebar.svg";
+import library from "../assets/library.svg";
+import folder from "../assets/folder.svg";
+import app from "../assets/app.svg";
+import codex from "../assets/codex.svg";
+import { MobileContext, SidebarContext } from "../context/context"
+import { LoginBoxContext } from "../context/context"
+
+export default function LoginSidebar() {
+
+    const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
+
+
+
+    const { isMobile, setIsMobile } = useContext(MobileContext);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    return (
+        <>
+
+            {sidebarOpen && isMobile && (
+                <div
+                    className="fixed inset-0 z-40 md:hidden transition-opacity"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+
+            <div
+                className={`fixed md:relative z-[10] flex flex-col h-screen bg-black border-r border-white/10 transition-all ease-in-out duration-300 shrink-0
+          ${sidebarOpen ? "translate-x-0 w-[280px] md:w-[260px]" : "-translate-x-full md:translate-x-0 md:w-[68px]"}
+        `}
+            >
+
+                <div className="p-2 md:px-[14px] md:py-[10px] flex justify-between items-center h-[60px]">
+                    <div className={`flex items-center gap-2 overflow-hidden ${!sidebarOpen && 'md:hidden'}`}>
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg"
+                            alt="ChatGPT Logo"
+                            className="w-5 brightness-0 invert"
+                        />
+                    </div>
+
+                    <button
+                        className="p-2  hover:bg-white/10 rounded-lg transition-colors cursor-e-resize shrink-0"
+                        onClick={() => setSidebarOpen(!sidebarOpen)}>
+                        {isMobile ? sidebarOpen && <X size={20} /> : <img src={sidebaricon} alt="Sidebar" />}
+                    </button>
+                </div>
+
+                <div className="pt-2 px-2">
+                    <ul className="text-sm flex flex-col gap-1">
+                        <li className="px-2 py-2 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                            <SquarePen size={18} className="shrink-0" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
+                                New Chat
+                            </span>
+                        </li>
+                        <li className="px-2 py-2 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                            <Search size={18} className="shrink-0" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
+                                Search Chat
+                            </span>
+                        </li>
+                        <li className="px-2 py-2 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                            <img src={library} alt="" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
+                                Library
+                            </span>
+                        </li>
+                        <li className="px-2 py-2 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                            <img src={folder} alt="" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
+                                Projects
+                            </span>
+                        </li>
+                        <li className="px-2 py-2 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                            <img src={app} alt="" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
+                                App
+                            </span>
+                        </li>
+                        <li className="px-2 py-2 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                            <img src={codex} alt="" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
+                                Codex
+                            </span>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div className="flex-1 overflow-auto"></div>
+
+
+                <div className={`overflow-hidden transition-all duration-300 ${!sidebarOpen ? 'md:h-0 md:opacity-0' : 'h-auto opacity-100'}`}>
+                    <footer className="p-2 border-t-[1px] border-white/20 flex justify-between w-full gap-2  items-start text-sm">
+                        <div className="flex gap-2 ">
+                            <div className="rounded-full bg-orange-500 w-8 h-8"></div>
+                            <div>
+                                <div>Name</div>
+                                <div className="text-xs text-gray-300">Plan</div>
+                            </div>
+                        </div>
+                            <button className="border-[1px] border-white/40 px-2 py-1 rounded-full">Upgrade</button>
+                    </footer>
+                </div>
+            </div>
+        </>
+    )
+};

@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, X, LifeBuoy } from "lucide-react";
 import star from "../assets/star.svg";
 import help from "../assets/help.svg";
-import sidebar from "../assets/sidebar.svg";
-
+import sidebaricon from "../assets/sidebar.svg";
+import {MobileContext, SidebarContext} from "../context/context"
+import {LoginBoxContext} from "../context/context"
 
 export default function LogoutSidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
+  
+      const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
+      const {showLogin, setShowLogin} = useContext(LoginBoxContext);
+
+
+  const {isMobile, setIsMobile} = useContext(MobileContext);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -48,7 +52,7 @@ export default function LogoutSidebar() {
           <button
             className="p-2  hover:bg-white/10 rounded-lg transition-colors cursor-e-resize shrink-0"
             onClick={() => setSidebarOpen(!sidebarOpen)}>
-            {isMobile ? sidebarOpen && <X size={20} /> : <img src={sidebar} alt="Sidebar" />}
+            {isMobile ? sidebarOpen && <X size={20} /> : <img src={sidebaricon} alt="Sidebar" />}
           </button>
         </div>
 

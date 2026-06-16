@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Phone, X } from "lucide-react";
 import Google from "../assets/Google.svg";
 import Apple from "../assets/Apple.svg";
-
+import { LoginBoxContext } from "../context/context";
 
 export default function LoginPage() {
+    const {showLogin, setShowLogin} = useContext(LoginBoxContext);
     return (<>
       <div onClick={() => setShowLogin(!showLogin)} className="absolute inset-0 bg-black opacity-50 z-40"></div>
       
-            <div className="fixed p-2 inset-0 z-50 flex h-4/5 my-auto justify-center bg-black/60 sm:items-center sm:p-4" onClick={() => setShowLogin(false)}>
+            <div className="fixed p-2 inset-0 z-50 flex h-fit my-auto justify-center bg-black/60 sm:items-center sm:p-4" onClick={() => setShowLogin(false)}>
                 <div
-                    className="relative flex max-h-[92dvh] w-full flex-col rounded-t-3xl bg-[#212121] text-white shadow-2xl sm:max-w-[430px] sm:rounded-2xl"
+                    className="relative flex max-h-fit w-4/5 flex-col rounded-t-3xl bg-[#212121] text-white shadow-2xl md:max-w-[450px]  sm:rounded-2xl"
                     onClick={(e) => e.stopPropagation()}
                 >
 
