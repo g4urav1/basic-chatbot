@@ -13,6 +13,7 @@ import LoginPage from "../components/loginpage";
 import {SidebarContext} from "../context/context"
 import {LoginBoxContext} from "../context/context"
 import {MobileContext} from "../context/context"
+import {LoginContext} from "../context/context"
 
 
 
@@ -23,7 +24,7 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [message, setMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
   const hasMessage = message.trim().length > 0;
@@ -47,6 +48,7 @@ export default function Home() {
   }, []);
   return (
     
+    <LoginContext.Provider  value={{ isLoggedIn, setIsLoggedIn }}>
     <MobileContext.Provider value = {{isMobile , setIsMobile}}>
     <LoginBoxContext.Provider value = {{showLogin , setShowLogin}}>
     <SidebarContext.Provider value = {{sidebarOpen , setSidebarOpen}}>
@@ -105,5 +107,6 @@ export default function Home() {
     </SidebarContext.Provider>
     </LoginBoxContext.Provider>
     </MobileContext.Provider>
+    </LoginContext.Provider>
   );
 }

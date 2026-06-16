@@ -9,14 +9,14 @@ import app from "../assets/app.svg";
 import codex from "../assets/codex.svg";
 import { MobileContext, SidebarContext } from "../context/context"
 import { LoginBoxContext } from "../context/context"
+import AccDropdown from "./accdropdown";
 
 export default function LoginSidebar() {
 
     const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
-
-
-
     const { isMobile, setIsMobile } = useContext(MobileContext);
+
+    const [showAccDropdown, setShowAccDropdown] = useState(false);
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -106,9 +106,12 @@ export default function LoginSidebar() {
 
 
                 <div className={`overflow-hidden transition-all duration-300 ${!sidebarOpen ? 'md:h-0 md:opacity-0' : 'h-auto opacity-100'}`}>
-                    <footer className="p-2 border-t-[1px] border-white/20 flex justify-between w-full gap-2  items-start text-sm">
-                        <div className="flex gap-2 ">
-                            <div className="rounded-full bg-orange-500 w-8 h-8"></div>
+
+{showAccDropdown && <AccDropdown />}
+
+                    <footer onClick={()=>setShowAccDropdown(!showAccDropdown)} className="p-2 border-t-[1px] border-white/20 flex justify-between w-full gap-2  items-start text-sm">
+                        <div className="flex gap-2 items-center">
+                            <div className="rounded-full bg-orange-500 w-6 h-6"></div>
                             <div>
                                 <div>Name</div>
                                 <div className="text-xs text-gray-300">Plan</div>
@@ -116,6 +119,7 @@ export default function LoginSidebar() {
                         </div>
                             <button className="border-[1px] border-white/40 px-2 py-1 rounded-full">Upgrade</button>
                     </footer>
+
                 </div>
             </div>
         </>
