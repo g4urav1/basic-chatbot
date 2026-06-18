@@ -3,16 +3,16 @@ import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, X, Li
 import star from "../assets/star.svg";
 import help from "../assets/help.svg";
 import sidebaricon from "../assets/sidebar.svg";
-import {MobileContext, SidebarContext} from "../context/context"
-import {LoginBoxContext} from "../context/context"
+import { MobileContext, SidebarContext } from "../context/context"
+import { LoginBoxContext } from "../context/context"
 
 export default function LogoutSidebar() {
-  
-      const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
-      const {showLogin, setShowLogin} = useContext(LoginBoxContext);
+
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
+  const { showLogin, setShowLogin } = useContext(LoginBoxContext);
 
 
-  const {isMobile, setIsMobile} = useContext(MobileContext);
+  const { isMobile, setIsMobile } = useContext(MobileContext);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -25,17 +25,17 @@ export default function LogoutSidebar() {
   }, []);
 
   return (
-  <>
+    <>
 
       {sidebarOpen && isMobile && (
         <div
-          className="fixed inset-0 z-40 md:hidden transition-opacity"
+          className="fixed inset-0 z-30 md:hidden transition-opacity"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-<div
-        className={`fixed md:relative z-[10] flex flex-col h-screen bg-black border-r border-white/10 transition-all ease-in-out duration-300 shrink-0
+      <div
+        className={`fixed md:relative z-50 flex flex-col h-screen bg-black border-r border-white/10 transition-all ease-in-out duration-300 shrink-0
           ${sidebarOpen ? "translate-x-0 w-[280px] md:w-[260px]" : "-translate-x-full md:translate-x-0 md:w-[68px]"}
         `}
       >
@@ -96,8 +96,8 @@ export default function LogoutSidebar() {
               </span>
             </li>
             <li className={`px-3 py-2 flex items-center gap-3 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
-              
-<LifeBuoy size={20} strokeWidth={1.5} />
+
+              <LifeBuoy size={20} strokeWidth={1.5} />
               <span className={`whitespace-nowrap transition-opacity duration-200 ${!sidebarOpen && 'md:opacity-0 md:w-0'}`}>
                 Help
               </span>
@@ -111,11 +111,16 @@ export default function LogoutSidebar() {
             <div className="text-[#AEAEAE] text-xs leading-relaxed">
               Log in to get answers based on saved chats, plus create images and upload files.
             </div>
-            <button onClick={() => setShowLogin(!showLogin)} className="w-full bg-[#212121] text-white mt-2 py-2.5 rounded-full text-sm font-semibold transition-colors border border-white/20 ">
+            <button   onClick={() => {
+    setShowLogin(!showLogin);
+    setSidebarOpen(false);
+  }}
+             className="w-full bg-[#212121] text-white mt-2 py-2.5 rounded-full text-sm font-semibold transition-colors border border-white/20 ">
               Log in
             </button>
           </footer>
         </div>
       </div>
-      </>
-    )};
+    </>
+  )
+};

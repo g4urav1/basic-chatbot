@@ -8,6 +8,10 @@ import { LoginContext } from "../context/context";
 export default function LoginPage() {
     const { showLogin, setShowLogin } = useContext(LoginBoxContext);
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+    const [email, setEmail] = useState("");
+    const [OTP, setOTP] = useState("")
+    const [toggleField, setToggleField] = useState(true)
+
     return (<>
         <div onClick={() => setShowLogin(!showLogin)} className="absolute inset-0 bg-black opacity-50 z-40"></div>
 
@@ -68,16 +72,35 @@ export default function LoginPage() {
                         <div className="h-px flex-1 bg-[#555]" />
                     </div>
 
-                    <input
+                    {toggleField ? <input
                         type="email"
                         placeholder="Email address"
+                          value={email}
+  onChange={(e) => setEmail(e.target.value)}
                         className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
-                    />
+                    /> :
+                        <input
+                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            placeholder="Enter OTP"
+                            value={OTP}
+                            onChange={(e) => {
+                                setOTP(e.target.value.replace(/\D/g, ""));
+                                setOTP(e.target.value)
+                            }}
+                            className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
+                        />}
 
+                 { toggleField ?  <button onClick={() => setToggleField(!toggleField)} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
+                    >
+                        Send Otp
+                    </button>:
                     <button onClick={() => { setIsLoggedIn(true); setShowLogin(false); }} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
                     >
                         Continue
                     </button>
+                    }
                 </div>
             </div>
         </div>
