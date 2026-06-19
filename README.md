@@ -1,18 +1,20 @@
 # Basic Chatbot
 
-This is a simple ChatGPT-style chatbot frontend built with React and Vite.
+A simple ChatGPT-style chatbot frontend made with React and Vite.
 
-The project focuses on the user interface. It has a sidebar, navigation bar, login/sign up modal, and a message input box. Right now, it does not connect to a real AI model. When a message is sent, it is handled on the frontend only.
+This project is mainly focused on frontend UI practice. It has a chat layout, sidebar, login modal, navigation, and a message input box.
+
+Right now, this project does not have a real chatbot backend or AI response system.
 
 ## Features
 
-- ChatGPT-style layout
-- Sidebar for desktop and mobile screens
-- Login and sign up modal UI
+- ChatGPT-style user interface
+- Responsive sidebar
+- Login modal UI
+- Login and logout UI states
 - Message input box
-- Different UI for logged-in and logged-out views
-- Responsive design
-- Icons used from Lucide React
+- Icon-based UI
+- Frontend routing
 
 ## Tech Stack
 
@@ -22,12 +24,6 @@ The project focuses on the user interface. It has a sidebar, navigation bar, log
 - Tailwind CSS
 - React Router DOM
 - Lucide React
-
-## Project Status
-
-This project is still in progress.
-
-The frontend UI is created, but real chatbot replies, backend connection, and proper authentication are not fully added yet.
 
 ## Folder Structure
 
@@ -47,8 +43,9 @@ basic-chatbot/
 ├── tailwind.config.js
 ├── eslint.config.js
 └── README.md
+```
 
-## Installation
+## How to Run
 
 Clone the repository:
 
@@ -76,61 +73,35 @@ npm run dev
 
 ## Available Scripts
 
-Run the development server:
+Run the project:
 
 ```bash
 npm run dev
 ```
 
-Create a production build:
+Create a build:
 
 ```bash
 npm run build
 ```
 
-Preview the production build locally:
+Preview the build:
 
 ```bash
 npm run preview
 ```
 
-Run ESLint:
+Run linting:
 
 ```bash
 npm run lint
 ```
 
-## Folder Structure
+## Project Status
 
-```txt
-basic-chatbot/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── context/
-│   ├── Pages/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── eslint.config.js
-└── README.md
-```
+This project is still in progress.
 
-## Future Improvements
-
-* Add backend API integration
-* Connect chatbot responses with an AI model
-* Add proper authentication
-* Store chat history
-* Improve error handling
-* Add loading states for responses
-* Add dark/light theme support
-* Improve accessibility
+The frontend UI is created, but backend API, real chatbot replies, authentication, and chat history are not fully added yet.
 
 ## Author
 
