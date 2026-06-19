@@ -5,7 +5,7 @@ import { LoginBoxContext, SidebarContext } from "../context/context";
 
 export default function LogoutNav() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
- const {showLogin, setShowLogin} = useContext(LoginBoxContext);
+    const { showLogin, setShowLogin } = useContext(LoginBoxContext);
     const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
 
     return (
@@ -72,12 +72,12 @@ export default function LogoutNav() {
 
                 <div className="flex items-center gap-2 md:gap-5">
                     <div className="text-[#DCDBF6] flex items-center gap-1">
-                        <Sparkle size={20}  fill="#DCDBF6" />
+                        <Sparkle size={20} fill="#DCDBF6" />
                         <span className="text-sm">Upgrade to Go</span>
                     </div>
                     <div>
 
-<MessageCircleDashed size={18} /></div>
+                        <MessageCircleDashed size={18} /></div>
                 </div>
             </nav>
         </>

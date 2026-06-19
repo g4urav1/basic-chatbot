@@ -1,11 +1,12 @@
 import { ChevronRight, Sparkle, CircleGauge, CircleUserRound, LogOut, Settings, LifeBuoy } from "lucide-react";
-import { LoginContext } from "../context/context";
+import { LoginContext, MessagesContext } from "../context/context";
 import { useContext } from "react";
 
 export default function AccDropdown() {
     
     
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+    const { messages, setMessages } = useContext(MessagesContext);
 
     return (
         <div className="fixed bottom-14 left-2 p-4 mt-2 w-full bg-[#353535] border border-white/10 rounded-lg shadow-lg z-50">
@@ -66,6 +67,7 @@ export default function AccDropdown() {
                     <li onClick={() => {
                         localStorage.removeItem("isLoggedIn");
                         setIsLoggedIn(false);
+                        setMessages([])
                     }} className=" py-1 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
                         <LogOut size={18} className="shrink-0" />
                         <span className={`whitespace-nowrap transition-opacity duration-200`}>

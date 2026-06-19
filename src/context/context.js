@@ -17,4 +17,8 @@ export  const LoginContext = createContext({
 showLogin: false,
 setShowLogin: () => {}
 });
+export  const MessagesContext = createContext({
+messages: [],
+setMessages: []
+});
 

@@ -14,6 +14,7 @@ import { SidebarContext } from "../context/context"
 import { LoginBoxContext } from "../context/context"
 import { MobileContext } from "../context/context"
 import { LoginContext } from "../context/context"
+import { MessagesContext } from "../context/context"
 
 
 
@@ -95,6 +96,7 @@ export default function Home() {
 
   return (
 
+    <MessagesContext.Provider value={{ messages, setMessages }}>
     <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <MobileContext.Provider value={{ isMobile, setIsMobile }}>
         <LoginBoxContext.Provider value={{ showLogin, setShowLogin }}>
@@ -182,5 +184,6 @@ export default function Home() {
         </LoginBoxContext.Provider>
       </MobileContext.Provider>
     </LoginContext.Provider>
+    </MessagesContext.Provider>
   );
 }

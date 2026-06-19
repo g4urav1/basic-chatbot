@@ -5,7 +5,7 @@ import { LoginBoxContext, SidebarContext } from "../context/context";
 
 export default function LogoutNav() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
- const {showLogin, setShowLogin} = useContext(LoginBoxContext);
+    const { showLogin, setShowLogin } = useContext(LoginBoxContext);
     const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
 
     return (
