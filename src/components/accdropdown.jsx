@@ -63,7 +63,10 @@ export default function AccDropdown() {
                         </span></div>
                         <span><ChevronRight size={14}/></span>
                     </li>
-                    <li onClick={()=>setIsLoggedIn(false)} className=" py-1 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
+                    <li onClick={() => {
+                        localStorage.removeItem("isLoggedIn");
+                        setIsLoggedIn(false);
+                    }} className=" py-1 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
                         <LogOut size={18} className="shrink-0" />
                         <span className={`whitespace-nowrap transition-opacity duration-200`}>
                             LogOut

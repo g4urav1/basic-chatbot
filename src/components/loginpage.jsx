@@ -12,6 +12,66 @@ export default function LoginPage() {
     const [OTP, setOTP] = useState("")
     const [toggleField, setToggleField] = useState(true)
 
+    const handleSendOtp = async () => {
+  try {
+    const response = await fetch("http://localhost:1111/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message);
+      setToggleField(false);
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Server Error");
+  }
+};
+
+const handleVerifyOtp = async () => {
+  try {
+    const response = await fetch(
+      "http://localhost:1111/loginAuth",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          otp: OTP,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setIsLoggedIn(true);
+      setShowLogin(false);
+
+      localStorage.setItem("isLoggedIn", "true");
+
+      alert(data.message);
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Server Error");
+  }
+};
+
     return (<>
         <div onClick={() => setShowLogin(!showLogin)} className="absolute inset-0 bg-black opacity-50 z-40"></div>
 
@@ -92,11 +152,11 @@ export default function LoginPage() {
                             className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
                         />}
 
-                 { toggleField ?  <button onClick={() => setToggleField(!toggleField)} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
+                 { toggleField ?  <button  onClick={handleSendOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
                     >
                         Send Otp
                     </button>:
-                    <button onClick={() => { setIsLoggedIn(true); setShowLogin(false); }} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
+                    <button onClick={handleVerifyOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
                     >
                         Continue
                     </button>

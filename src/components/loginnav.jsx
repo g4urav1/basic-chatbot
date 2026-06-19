@@ -10,7 +10,7 @@ export default function LogoutNav() {
 
     return (
         <>
-            <nav className="flex items-center justify-between p-3 md:px-6 md:py-4 bg-[#000000] text-white">
+            <nav className="flex items-center justify-between p-3  md:px-3 md:py-2 bg-[#000000] text-white">
                 <div className="flex items-center gap-3">
                     <button
                         className="md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
