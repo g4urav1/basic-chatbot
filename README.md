@@ -1,34 +1,52 @@
 # Basic Chatbot
 
-A responsive ChatGPT-style chatbot frontend built with React, Vite, Tailwind CSS, React Router, and Lucide React icons.
+This is a simple ChatGPT-style chatbot frontend built with React and Vite.
 
-This project focuses on the frontend UI of a chatbot application. It includes a modern chat layout, responsive sidebar behavior, login/logout navigation states, and a message input interface. The backend/API integration is not completed yet and will be added later.
+The project focuses on the user interface. It has a sidebar, navigation bar, login/sign up modal, and a message input box. Right now, it does not connect to a real AI model. When a message is sent, it is handled on the frontend only.
 
 ## Features
 
-* ChatGPT-inspired user interface
-* Responsive layout for desktop and mobile screens
-* Sidebar navigation
-* Login and logout UI states
-* Login modal interface
-* Message input box with send button behavior
-* Icon-based UI using Lucide React
-* Built with Vite for fast development
+- ChatGPT-style layout
+- Sidebar for desktop and mobile screens
+- Login and sign up modal UI
+- Message input box
+- Different UI for logged-in and logged-out views
+- Responsive design
+- Icons used from Lucide React
 
 ## Tech Stack
 
-* React
-* Vite
-* React Router DOM
-* Tailwind CSS
-* Lucide React
-* JavaScript
+- React
+- Vite
+- JavaScript
+- Tailwind CSS
+- React Router DOM
+- Lucide React
 
 ## Project Status
 
-This project is currently in development.
+This project is still in progress.
 
-Frontend UI work is in progress. Backend functionality, authentication, and real chatbot response handling are planned for future updates.
+The frontend UI is created, but real chatbot replies, backend connection, and proper authentication are not fully added yet.
+
+## Folder Structure
+
+```text
+basic-chatbot/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── context/
+│   ├── Pages/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── eslint.config.js
+└── README.md
 
 ## Installation
 
