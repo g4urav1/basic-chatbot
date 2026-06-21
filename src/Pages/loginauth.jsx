@@ -9,6 +9,7 @@ export default function LoginAuth() {
     const { email, setEmail } = useContext(mailContext);
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
     const { showLogin, setShowLogin } = useContext(LoginBoxContext);
+    const [isSendingOtp, setIsSendingOtp] = useState(false);
     const navigate = useNavigate();
 
     const handleVerifyOtp = async () => {
