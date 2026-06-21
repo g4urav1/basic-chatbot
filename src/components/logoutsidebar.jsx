@@ -34,7 +34,7 @@ export default function LogoutSidebar() {
         />
       )}
 
-      <div
+      <aside
         className={`fixed md:relative z-50 flex flex-col h-screen bg-black border-r border-white/10 transition-all ease-in-out duration-300 shrink-0
           ${sidebarOpen ? "translate-x-0 w-[280px] md:w-[260px]" : "-translate-x-full md:translate-x-0 md:w-[68px]"}
         `}
@@ -120,7 +120,7 @@ export default function LogoutSidebar() {
             </button>
           </footer>
         </div>
-      </div>
+      </aside>
     </>
   )
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, Plus, Mic, AudioLines, Menu, ArrowUp } from "lucide-react";
 import star from "../assets/star.svg";
 import help from "../assets/help.svg";
@@ -9,22 +9,16 @@ import LoginNav from "../components/loginnav";
 import LoginSidebar from "../components/loginsidebar";
 import LogoutSidebar from "../components/logoutsidebar";
 import LoginPage from "../components/loginpage";
-
-import { SidebarContext } from "../context/context"
-import { LoginBoxContext } from "../context/context"
-import { MobileContext } from "../context/context"
-import { LoginContext } from "../context/context"
-import { MessagesContext } from "../context/context"
-
+import { LoginBoxContext, LoginContext, MobileContext, SidebarContext } from "../context/context";
 
 
 
 export default function Home() {
-
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  const { showLogin, setShowLogin } = useContext(LoginBoxContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const { isMobile, setIsMobile } = useContext(MobileContext);
+  const { sidebaropen, setSidebarOpen } = useContext(SidebarContext);
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -96,11 +90,6 @@ export default function Home() {
 
   return (
 
-    <MessagesContext.Provider value={{ messages, setMessages }}>
-    <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <MobileContext.Provider value={{ isMobile, setIsMobile }}>
-        <LoginBoxContext.Provider value={{ showLogin, setShowLogin }}>
-          <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen }}>
             <div className="flex h-screen bg-black text-white font-sans scrollbar-dark overflow-hidden">
 
               {showLogin && <LoginPage />}
@@ -180,10 +169,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </SidebarContext.Provider>
-        </LoginBoxContext.Provider>
-      </MobileContext.Provider>
-    </LoginContext.Provider>
-    </MessagesContext.Provider>
+          
   );
 }

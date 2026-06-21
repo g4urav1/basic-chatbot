@@ -1,19 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Phone, X } from "lucide-react";
 import Google from "../assets/Google.svg";
 import Apple from "../assets/Apple.svg";
 import { LoginBoxContext } from "../context/context";
 import { LoginContext } from "../context/context";
+import { mailContext } from "../context/context";
 
 export default function LoginPage() {
   const { showLogin, setShowLogin } = useContext(LoginBoxContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-  const [email, setEmail] = useState("");
-  const [OTP, setOTP] = useState("")
-  const [toggleField, setToggleField] = useState(true)
+  const { email, setEmail } = useContext(mailContext);
+  const navigate = useNavigate();
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
 
   const handleSendOtp = async () => {
     try {
+
+      setIsSendingOtp(true);
+
       const response = await fetch("http://localhost:1111/login", {
         method: "POST",
         headers: {
@@ -28,49 +33,19 @@ export default function LoginPage() {
 
       if (response.ok) {
         alert(data.message);
-        setToggleField(false);
+        navigate("/login");
       } else {
         alert(data.message);
       }
+
     } catch (error) {
       console.error(error);
       alert("Server Error");
+    } finally {
+      setIsSendingOtp(false);
     }
   };
 
-  const handleVerifyOtp = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:1111/loginAuth",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            otp: OTP,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setIsLoggedIn(true);
-        setShowLogin(false);
-
-        localStorage.setItem("isLoggedIn", "true");
-
-        alert(data.message);
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Server Error");
-    }
-  };
 
   return (<>
     <div onClick={() => setShowLogin(!showLogin)} className="absolute inset-0 bg-black opacity-50 z-40"></div>
@@ -132,37 +107,17 @@ export default function LoginPage() {
             <div className="h-px flex-1 bg-[#555]" />
           </div>
 
-          {toggleField ? <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            autoComplete="email"
-            
-            onChange={(e) => setEmail(e.target.value)}
-            className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
-          /> :
-            <input
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              placeholder="Enter OTP"
-              value={OTP}
-              onChange={(e) => {
-                setOTP(e.target.value.replace(/\D/g, ""));
-                setOTP(e.target.value)
-              }}
-              className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
-            />}
-
-          {toggleField ? <button onClick={handleSendOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
+          <input type="email" placeholder="Email address" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
+          />
+          <button onClick={handleSendOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 flex justify-center items-center text-black hover:bg-white transition-colors" id="sen_otp_btn"
           >
-            Send Otp
-          </button> :
-            <button onClick={handleVerifyOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"
-            >
-              Continue
-            </button>
-          }
+            {isSendingOtp ? (
+                                    <div className="h-5 w-5 animate-spin  rounded-full border-2 border-black border-t-transparent"></div>
+                                ) : (
+                                    "Send Otp"
+                                )}
+
+          </button>
         </div>
       </div>
     </div>
