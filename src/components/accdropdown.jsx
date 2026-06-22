@@ -5,8 +5,8 @@ import { useContext } from "react";
 export default function AccDropdown() {
     
     
-    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-    const { messages, setMessages } = useContext(MessagesContext);
+    const { setIsLoggedIn } = useContext(LoginContext);
+    const { setMessages } = useContext(MessagesContext);
 
     return (
         <div className="fixed bottom-14 left-2 p-4 mt-2 w-full bg-[#353535] border border-white/10 rounded-lg shadow-lg z-50">

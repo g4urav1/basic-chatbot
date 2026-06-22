@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Phone, X } from "lucide-react";
 import Google from "../assets/Google.svg";
 import Apple from "../assets/Apple.svg";
 import { LoginBoxContext, NewUserContext } from "../context/context";
-import { LoginContext } from "../context/context";
 import { mailContext } from "../context/context";
 
 export default function LoginPage() {
   const { showLogin, setShowLogin } = useContext(LoginBoxContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const { email, setEmail } = useContext(mailContext);
   const { isNewUser, setIsNewUser } = useContext(NewUserContext);
   const navigate = useNavigate();

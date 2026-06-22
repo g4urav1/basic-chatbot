@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import hamburger from "../assets/hamburgermenu.svg";
 import { LoginBoxContext, SidebarContext } from "../context/context";
@@ -6,7 +6,7 @@ import { LoginBoxContext, SidebarContext } from "../context/context";
 export default function LogoutNav() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const { showLogin, setShowLogin } = useContext(LoginBoxContext);
-    const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
+    const { setSidebarOpen } = useContext(SidebarContext)
 
     return (
         <>

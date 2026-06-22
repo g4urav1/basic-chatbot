@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { LoginBoxContext, LoginContext, mailContext, NewUserContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 
@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginAuth() {
     const [OTP, setOTP] = useState("")
-    const { email, setEmail } = useContext(mailContext);
-    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-    const { showLogin, setShowLogin } = useContext(LoginBoxContext);
-    const { isNewUser, SetIsNewUser } = useContext(NewUserContext);
+    const { email} = useContext(mailContext);
+    const { setIsLoggedIn } = useContext(LoginContext);
+    const { showLogin } = useContext(LoginBoxContext);
+    const { SetIsNewUser } = useContext(NewUserContext);
     const [isSendingOtp, setIsSendingOtp] = useState(false);
 
 

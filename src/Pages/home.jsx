@@ -1,9 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, Plus, Mic, AudioLines, Menu, ArrowUp } from "lucide-react";
-import star from "../assets/star.svg";
-import help from "../assets/help.svg";
-import sidebar from "../assets/sidebar.svg";
-import hamburger from "../assets/hamburgermenu.svg";
+import { useState, useEffect, useContext } from "react";
+import { Plus, Mic, AudioLines, ArrowUp } from "lucide-react";
 import LogoutNav from "../components/logoutnav";
 import LoginNav from "../components/loginnav";
 import LoginSidebar from "../components/loginsidebar";
@@ -15,10 +11,10 @@ import { LoginBoxContext, LoginContext, MobileContext, SidebarContext } from "..
 
 export default function Home() {
   
-  const { showLogin, setShowLogin } = useContext(LoginBoxContext);
+  const { showLogin} = useContext(LoginBoxContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-  const { isMobile, setIsMobile } = useContext(MobileContext);
-  const { sidebaropen, setSidebarOpen } = useContext(SidebarContext);
+  const { setIsMobile } = useContext(MobileContext);
+  const { sidebarOpen} = useContext(SidebarContext);
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);

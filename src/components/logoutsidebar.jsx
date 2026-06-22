@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, X, LifeBuoy } from "lucide-react";
+import { useEffect, useContext } from "react";
+import { SquarePen, Search, Image as ImageIcon, Settings, X, LifeBuoy } from "lucide-react";
 import star from "../assets/star.svg";
-import help from "../assets/help.svg";
 import sidebaricon from "../assets/sidebar.svg";
-import { MobileContext, SidebarContext } from "../context/context"
-import { LoginBoxContext } from "../context/context"
+import { MobileContext, SidebarContext } from "../context/context";
+import { LoginBoxContext } from "../context/context";
 
 export default function LogoutSidebar() {
 

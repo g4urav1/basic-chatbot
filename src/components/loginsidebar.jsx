@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { PanelLeft, SquarePen, Search, Image as ImageIcon, Star, Settings, X, LifeBuoy, Folder, Grid2X2, Badge, Columns3 } from "lucide-react";
-import star from "../assets/star.svg";
-import help from "../assets/help.svg";
+import { useState, useEffect, useContext } from "react";
+import { SquarePen, Search, X } from "lucide-react";
+
 import sidebaricon from "../assets/sidebar.svg";
 import library from "../assets/library.svg";
 import folder from "../assets/folder.svg";
 import app from "../assets/app.svg";
 import codex from "../assets/codex.svg";
-import { MobileContext, SidebarContext } from "../context/context"
-import { LoginBoxContext } from "../context/context"
+
+import { MobileContext, SidebarContext } from "../context/context";
 import AccDropdown from "./accdropdown";
 
 export default function LoginSidebar() {
