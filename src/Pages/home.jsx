@@ -14,7 +14,7 @@ export default function Home() {
   const { showLogin} = useContext(LoginBoxContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const { setIsMobile } = useContext(MobileContext);
-  const { sidebarOpen} = useContext(SidebarContext);
+  const { sidebarOpen, setSidebarOpen} = useContext(SidebarContext);
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
