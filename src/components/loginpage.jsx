@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Phone, X } from "lucide-react";
 import Google from "../assets/Google.svg";
 import Apple from "../assets/Apple.svg";
-import { LoginBoxContext } from "../context/context";
+import { LoginBoxContext, NewUserContext } from "../context/context";
 import { LoginContext } from "../context/context";
 import { mailContext } from "../context/context";
 
@@ -11,14 +11,16 @@ export default function LoginPage() {
   const { showLogin, setShowLogin } = useContext(LoginBoxContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const { email, setEmail } = useContext(mailContext);
+  const { isNewUser, setIsNewUser } = useContext(NewUserContext);
   const navigate = useNavigate();
   const [isSendingOtp, setIsSendingOtp] = useState(false);
 
   const handleSendOtp = async () => {
+
+    console.log("handleSendOtp called");
+
     try {
-
       setIsSendingOtp(true);
-
       const response = await fetch("http://localhost:1111/login", {
         method: "POST",
         headers: {
@@ -29,10 +31,23 @@ export default function LoginPage() {
         }),
       });
 
+
+      console.log("Response received:", response);
+
       const data = await response.json();
 
+
+
+      console.log("Backend data:", data);
+
+
       if (response.ok) {
+        setIsNewUser(data.isNewUser);
+        console.log(isNewUser)
+        console.log("isNewUser from backend:", data.isNewUser);
+
         alert(data.message);
+
         navigate("/login");
       } else {
         alert(data.message);
@@ -45,7 +60,6 @@ export default function LoginPage() {
       setIsSendingOtp(false);
     }
   };
-
 
   return (<>
     <div onClick={() => setShowLogin(!showLogin)} className="absolute inset-0 bg-black opacity-50 z-40"></div>
@@ -112,10 +126,10 @@ export default function LoginPage() {
           <button onClick={handleSendOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 flex justify-center items-center text-black hover:bg-white transition-colors" id="sen_otp_btn"
           >
             {isSendingOtp ? (
-                                    <div className="h-5 w-5 animate-spin  rounded-full border-2 border-black border-t-transparent"></div>
-                                ) : (
-                                    "Send Otp"
-                                )}
+              <div className="h-5 w-5 animate-spin  rounded-full border-2 border-black border-t-transparent"></div>
+            ) : (
+              "Send Otp"
+            )}
 
           </button>
         </div>

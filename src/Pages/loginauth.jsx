@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { LoginBoxContext, LoginContext, mailContext } from "../context/context";
+import { LoginBoxContext, LoginContext, mailContext, NewUserContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 
 
@@ -9,7 +9,11 @@ export default function LoginAuth() {
     const { email, setEmail } = useContext(mailContext);
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
     const { showLogin, setShowLogin } = useContext(LoginBoxContext);
+    const { isNewUser, SetIsNewUser } = useContext(NewUserContext);
     const [isSendingOtp, setIsSendingOtp] = useState(false);
+
+
+
     const navigate = useNavigate();
 
     const handleVerifyOtp = async () => {
@@ -52,9 +56,13 @@ export default function LoginAuth() {
             alert("Server Error");
         }
     };
+
+
     const handleSendOtp = async () => {
         try {
+
             setIsSendingOtp(true);
+
             const response = await fetch("http://localhost:1111/login", {
                 method: "POST",
                 headers: {
@@ -80,16 +88,17 @@ export default function LoginAuth() {
             setIsSendingOtp(false);
         }
     };
+
     return (
 
-        <div className="bg-[#212121] max-w-screen h-auto flex flex-col items-center ">
+        <div className="bg-[#212121] max-w-screen min-h-screen h-auto flex flex-col items-center ">
             <header className="w-full p-5">
                 <h1 className="text-white text-xl font-semibold">ChatGPT</h1>
             </header>
             <main className="flex flex-col justify-center items-center w-1/2">
                 <div className="w-2/3 flex flex-col  items-center p-8">
                     <h2 className="text-3xl font-medium">Check your inbox</h2>
-                    <p className="mt-3 text-[#CDD5E0]">Enter the verification code we just sent to {email}</p>
+                    <p className="mt-3 text-center text-[#CDD5E0]">Enter the verification code we just sent to {email}</p>
                     <div className="mt-7 w-full flex flex-col gap-3">
                         <div className="relative">
                             <input
@@ -126,15 +135,15 @@ export default function LoginAuth() {
                             </button>
                             <button onClick={handleSendOtp} className="text-[#CDD5E0] ">Resend email</button>
                         </div>
-                        <div className="my-5 flex items-center gap-4">
+                        {!isNewUser && <div className="my-5 flex items-center gap-4">
                             <div className="h-px flex-1 bg-[#555]" />
                             <span className="text-sm text-white font-semibold">OR</span>
                             <div className="h-px flex-1 bg-[#555]" />
-                        </div>
-                        <button onClick={handleVerifyOtp} type="button" className="mt-4 h-12 w-full rounded-full text-[#CDD5E0] px-4 border border-white/10 hover:bg-white/10 transition-colors"
+                        </div>}
+                        {!isNewUser && <button onClick={handleVerifyOtp} type="button" className="mt-4 h-12 w-full rounded-full text-[#CDD5E0] px-4 border border-white/10 hover:bg-white/10 transition-colors"
                         >
                             Continue with password
-                        </button>
+                        </button>}
                     </div>
                     <div className="mt-10 flex justify-center items-center gap-2">
                         <a href="#" className="underline text-sm text-[#CDD5E0]">Terms of use</a>
