@@ -12,6 +12,7 @@ import { MobileContext } from "./context/context"
 import { LoginContext } from "./context/context"
 import { MessagesContext } from "./context/context"
 import { mailContext } from "./context/context"
+import SetupAcc from "./Pages/setupAcc";
 
 
 const router = createBrowserRouter([
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
     element: <Parent />,
     children: [
       { path: "", element: <Home /> },
-      { path: "login", element: <LoginAuth /> }
+      { path: "login", element: <LoginAuth /> },
+      { path: "acc_setup", element: <SetupAcc/> }
     ]
   }
 ]);
