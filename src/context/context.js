@@ -26,7 +26,7 @@ export const MessagesContext = createContext({
     setMessages: []
 });
 export const mailContext = createContext({
-    email: "",
+    email: true,
     setEmail: () => { }
 });
 

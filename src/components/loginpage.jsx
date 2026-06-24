@@ -121,7 +121,7 @@ export default function LoginPage() {
 
           <input type="email" placeholder="Email address" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} className="h-12 w-full rounded-full border border-transparent bg-black px-4 text-white placeholder:text-[#aaa] outline-none focus:border-white"
           />
-          <button onClick={handleSendOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 flex justify-center items-center text-black hover:bg-white transition-colors" id="sen_otp_btn"
+          <button onClick={handleSendOtp} type="button" className="mt-4 h-12 w-full rounded-full bg-[#f7f7f7] px-4 flex justify-center items-center text-black hover:bg-white transition-colors"
           >
             {isSendingOtp ? (
               <div className="h-5 w-5 animate-spin  rounded-full border-2 border-black border-t-transparent"></div>
