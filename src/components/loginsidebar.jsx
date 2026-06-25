@@ -7,12 +7,13 @@ import folder from "../assets/folder.svg";
 import app from "../assets/app.svg";
 import codex from "../assets/codex.svg";
 
-import { MobileContext, SidebarContext } from "../context/context";
+import { MobileContext, SidebarContext, userNameContext } from "../context/context";
 import AccDropdown from "./accdropdown";
 
 export default function LoginSidebar() {
     const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
     const { isMobile, setIsMobile } = useContext(MobileContext);
+    const { userName} = useContext(userNameContext);
 
     const [isHovered, setIsHovered] = useState(false);
     const [showAccDropdown, setShowAccDropdown] = useState(false);
@@ -180,7 +181,7 @@ export default function LoginSidebar() {
                         <div className="flex gap-2 items-center">
                             <div className="rounded-full bg-orange-500 w-6 h-6"></div>
                             <div>
-                                <div>Name</div>
+                                <div>{userName}</div>
                                 <div className="text-xs text-gray-300">Plan</div>
                             </div>
                         </div>

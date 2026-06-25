@@ -23,11 +23,15 @@ export const LoginContext = createContext({
 });
 export const MessagesContext = createContext({
     messages: [],
-    setMessages: []
+    setMessages: ()=>{}
 });
 export const mailContext = createContext({
     email: true,
     setEmail: () => { }
+});
+export const userNameContext = createContext({
+    userName: "",
+    setUserName: () => { }
 });
 
 

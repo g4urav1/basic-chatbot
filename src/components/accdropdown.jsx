@@ -1,12 +1,13 @@
 import { ChevronRight, Sparkle, CircleGauge, CircleUserRound, LogOut, Settings, LifeBuoy } from "lucide-react";
-import { LoginContext, MessagesContext } from "../context/context";
+import { LoginContext, MessagesContext, userNameContext } from "../context/context";
 import { useContext } from "react";
 
 export default function AccDropdown() {
-    
-    
+
+
     const { setIsLoggedIn } = useContext(LoginContext);
     const { setMessages } = useContext(MessagesContext);
+    const { userName } = useContext(userNameContext);
 
     return (
         <div className="fixed bottom-14 left-2 p-4 mt-2 w-full bg-[#353535] border border-white/10 rounded-lg shadow-lg z-50">
@@ -14,7 +15,7 @@ export default function AccDropdown() {
                 <div className="flex gap-2 items-center">
                     <div className="rounded-full bg-orange-500 w-6 h-6"></div>
                     <div>
-                        <div>Name</div>
+                        <div>{userName}</div>
                         <div className="text-xs text-gray-300">Plan</div>
                     </div>
                 </div>
@@ -57,14 +58,15 @@ export default function AccDropdown() {
 
                 <ul className="text-sm flex flex-col gap-2">
                     <li className=" py-1 flex items-center justify-between hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
-                    <div className="flex gap-2">
-                        <LifeBuoy size={18} className="shrink-0" />
-                        <span className={`whitespace-nowrap transition-opacity duration-200`}>
-                            Help
-                        </span></div>
-                        <span><ChevronRight size={14}/></span>
+                        <div className="flex gap-2">
+                            <LifeBuoy size={18} className="shrink-0" />
+                            <span className={`whitespace-nowrap transition-opacity duration-200`}>
+                                Help
+                            </span></div>
+                        <span><ChevronRight size={14} /></span>
                     </li>
                     <li onClick={() => {
+                        localStorage.removeItem("email")
                         localStorage.removeItem("isLoggedIn");
                         setIsLoggedIn(false);
                         setMessages([])
@@ -74,7 +76,7 @@ export default function AccDropdown() {
                             LogOut
                         </span>
                     </li>
-                 </ul>
+                </ul>
             </div>
         </div>
     );

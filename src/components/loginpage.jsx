@@ -40,6 +40,8 @@ export default function LoginPage() {
 
 
       if (response.ok) {
+
+        localStorage.setItem("email", email);
         setIsNewUser(data.isNewUser);
         console.log(isNewUser)
         console.log("isNewUser from backend:", data.isNewUser);
@@ -47,6 +49,7 @@ export default function LoginPage() {
         alert(data.message);
 
         navigate("/login");
+        
       } else {
         alert(data.message);
       }
