@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { LoginBoxContext, LoginContext, mailContext, NewUserContext } from "../context/context";
+import { LoginBoxContext, LoginContext, mailContext, NewUserContext, userNameContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 
@@ -10,13 +10,14 @@ export default function SetupAcc() {
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
+    const { userName, setUserName } = useContext(userNameContext);
     const { email, setEmail } = useContext(mailContext);
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
     const { showLogin, setShowLogin } = useContext(LoginBoxContext);
     const { isNewUser, SetIsNewUser } = useContext(NewUserContext);
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [infoPage, setInfoPage] = useState(true);
+    const [infoPage, setInfoPage] = useState(false);
 
 
 
@@ -42,6 +43,7 @@ export default function SetupAcc() {
 
             if (response.ok) {
                 alert(data.message);
+                setInfoPage(true)
             } else {
                 alert(data.message);
             }
@@ -75,6 +77,9 @@ export default function SetupAcc() {
 
             if (response.ok) {
                 alert(data.message);
+                setUserName(name)
+                localStorage.setItem("isLoggedIn", "true");
+                setIsLoggedIn(true);
                 navigate("/")
             } else {
                 alert(data.message);

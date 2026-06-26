@@ -90,11 +90,11 @@ export default function LoginAuth() {
 
             if (response.ok) {
                 localStorage.setItem("username", data.name);
-                localStorage.setItem("isLoggedIn", "true");
-
+                
                 setUserName(data.name);
-
+                
                 if (!isNewUser) {
+                    localStorage.setItem("isLoggedIn", "true");
                     setIsLoggedIn(true);
                 }
 
