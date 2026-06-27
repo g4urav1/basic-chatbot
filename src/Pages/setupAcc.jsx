@@ -119,7 +119,8 @@ export default function SetupAcc() {
                                   top-0 -translate-y-1/2 text-sm "
                                 >
                                     email
-                                </label></div>
+                                </label>
+                            </div>
                             <div className="relative w-full">
                                 <input
                                     id="code"

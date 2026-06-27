@@ -49,7 +49,7 @@ export default function LoginPage() {
         alert(data.message);
 
         navigate("/login");
-        
+
       } else {
         alert(data.message);
       }

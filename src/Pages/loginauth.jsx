@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { LoginBoxContext, LoginContext, mailContext, NewUserContext, userNameContext } from "../context/context";
 import { useNavigate } from "react-router-dom";
 
+import { Eye, EyeOff } from "lucide-react";
+
 
 
 export default function LoginAuth() {
@@ -14,7 +16,7 @@ export default function LoginAuth() {
     const { userName, setUserName } = useContext(userNameContext);
     const [isSendingOtp, setIsSendingOtp] = useState(false);
     const [byPassword, setByPassword] = useState(false);
-
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -90,9 +92,9 @@ export default function LoginAuth() {
 
             if (response.ok) {
                 localStorage.setItem("username", data.name);
-                
+
                 setUserName(data.name);
-                
+
                 if (!isNewUser) {
                     localStorage.setItem("isLoggedIn", "true");
                     setIsLoggedIn(true);
@@ -229,27 +231,39 @@ export default function LoginAuth() {
                                 <h2 className="text-3xl font-medium">Enter Password</h2>
                                 <p className="mt-3 text-center text-[#CDD5E0]">Enter the password you've created for {email}</p>
                                 <div className="mt-7 w-full flex flex-col gap-3">
-                                    <div className="relative">
+                                    <div className="relative w-full">
                                         <input
                                             id="password"
-                                            type="text"
+                                            type={showPassword ? "text" : "password"}
                                             placeholder=" "
                                             value={password}
                                             onChange={(e) => {
                                                 const value = e.target.value;
                                                 setPassword(value);
                                             }}
-                                            className=" peer h-12 w-full rounded-full border bg-[#212121] px-4 text-white placeholder:text-[#aaa]  focus:outline-none border-[#454545] focus:border-[#7A8FD8] transition-all duration-100 ease-in-out "
+                                            className="peer h-12 w-full rounded-full border border-[#454545] bg-[#212121] px-4 pr-12 text-white focus:border-[#7A8FD8] focus:outline-none"
                                         />
 
                                         <label
                                             htmlFor="password"
-                                            className=" absolute left-4 top-1/2 rounded-full px-2 -translate-y-1/2 text-[#aaa] transition-all duration-200 ease-in-out pointer-events-none 
-                                
-                                peer-focus:top-[-10px] peer-focus:z-[100] peer-focus:bg-[#212121] peer-focus:text-sm peer-focus:font-semibold peer-focus:text-[#7A8FD8] peer-focus:translate-y-0 peer-[:not(:placeholder-shown)]:top-[-10px] peer-[:not(:placeholder-shown)]:z-[100] peer-[:not(:placeholder-shown)]:bg-[#212121] peer-[:not(:placeholder-shown)]:text-sm  peer-[:not(:placeholder-shown)]:translate-y-0 "
+                                            className={`absolute left-4 bg-[#212121] px-2 pointer-events-none transition-all duration-200   
+                                    ${password
+                                                    ? "top-0 -translate-y-1/2 text-sm text-[#7A8FD8]"
+                                                    : "top-1/2 -translate-y-1/2 text-[#aaa]"
+                                                }
+                                    peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-sm peer-focus:text-[#7A8FD8]`}
                                         >
                                             Password
                                         </label>
+
+                                        <button
+                                            type="button"
+                                            onMouseDown={(e) => e.preventDefault()}
+                                            onClick={() => setShowPassword((prev) => !prev)}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#aaa] hover:text-white"
+                                        >
+                                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        </button>
                                     </div>
                                     <div className="text-center w-full space-y-4">
                                         <button onClick={handleVerifyPassword} type="button" className="mt-4 h-12 w-full rounded-full flex justify-center items-center bg-[#f7f7f7] px-4 text-black hover:bg-white transition-colors"

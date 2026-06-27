@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { ChevronDown, Sparkle, Sparkles, LucideAtom, Check, MessageCircleDashed } from "lucide-react";
 import hamburger from "../assets/hamburgermenu.svg";
-import {SidebarContext } from "../context/context";
+import { SidebarContext } from "../context/context";
 
 export default function LogoutNav() {
     const [dropdownOpen, setDropdownOpen] = useState(false);

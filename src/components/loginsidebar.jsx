@@ -13,7 +13,7 @@ import AccDropdown from "./accdropdown";
 export default function LoginSidebar() {
     const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
     const { isMobile, setIsMobile } = useContext(MobileContext);
-    const { userName} = useContext(userNameContext);
+    const { userName } = useContext(userNameContext);
 
     const [isHovered, setIsHovered] = useState(false);
     const [showAccDropdown, setShowAccDropdown] = useState(false);

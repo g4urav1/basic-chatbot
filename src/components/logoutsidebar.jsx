@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { SquarePen, Search, Image as ImageIcon, Settings, X, LifeBuoy } from "lucide-react";
 import star from "../assets/star.svg";
 import sidebaricon from "../assets/sidebar.svg";
@@ -9,9 +9,11 @@ export default function LogoutSidebar() {
 
   const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
   const { showLogin, setShowLogin } = useContext(LoginBoxContext);
-
-
   const { isMobile, setIsMobile } = useContext(MobileContext);
+
+  const [isHovered, setIsHovered] = useState(false);
+  const chatgptLogo =
+    "https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg";
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -38,24 +40,59 @@ export default function LogoutSidebar() {
           ${sidebarOpen ? "translate-x-0 w-[280px] md:w-[260px]" : "-translate-x-full md:translate-x-0 md:w-[68px]"}
         `}
       >
+        <div className={`p-2 ${sidebarOpen && "md:px-[15px]"} md:py-[10px] flex justify-between h-[60px] ${!sidebarOpen && "md:pl-7px md:pr-[14px]"}`}>
+          <div className="flex items-center gap-2 overflow-hidden">
+            {sidebarOpen && (
+              <img
+                src={chatgptLogo}
+                alt="ChatGPT Logo"
+                className="w-5 brightness-0 invert"
+              />
+            )}
 
-        <div className="p-3 md:px-[14px] md:py-[10px] flex justify-between items-center h-[60px]">
-          <div className={`flex items-center gap-3 overflow-hidden ${!sidebarOpen && 'md:hidden'}`}>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg"
-              alt="ChatGPT Logo"
-              className="w-5 brightness-0 invert"
-            />
+            {!sidebarOpen && (
+              <button
+                type="button"
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => {
+                  setSidebarOpen(true);
+                  setIsHovered(false);
+                }}
+              >
+                <img
+                  src={isHovered ? sidebaricon : chatgptLogo}
+                  alt="ChatGPT Logo"
+                  className={
+                    isHovered
+                      ? "w-5 h-5"
+                      : "w-5 h-5 brightness-0 invert"
+                  }
+                />
+              </button>
+            )}
           </div>
 
           <button
-            className="p-2  hover:bg-white/10 rounded-lg transition-colors cursor-e-resize shrink-0"
-            onClick={() => setSidebarOpen(!sidebarOpen)}>
-            {isMobile ? sidebarOpen && <X size={20} /> : <img src={sidebaricon} alt="Sidebar" />}
+            className={`p-2 hover:bg-white/10 rounded-lg transition-colors cursor-e-resize shrink-0 ${!sidebarOpen && "md:hidden"
+              }`}
+            onClick={() => {
+              setSidebarOpen(!sidebarOpen);
+              setIsHovered(false);
+            }}
+          >
+            {isMobile ? (
+              sidebarOpen && <X size={20} />
+            ) : (
+              <img
+                src={sidebaricon}
+                alt="Sidebar"
+                className="w-5 h-5" />
+            )}
           </button>
         </div>
-
-        <div className="pt-2 px-2">
+        <div className="pt-2 pr-2 pl-[7px]">
           <ul className="text-sm flex flex-col gap-1">
             <li className="px-3 py-2 flex items-center gap-3 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">
               <SquarePen size={18} className="shrink-0" />
@@ -110,11 +147,11 @@ export default function LogoutSidebar() {
             <div className="text-[#AEAEAE] text-xs leading-relaxed">
               Log in to get answers based on saved chats, plus create images and upload files.
             </div>
-            <button   onClick={() => {
-    setShowLogin(!showLogin);
-    setSidebarOpen(false);
-  }}
-             className="w-full bg-[#212121] text-white mt-2 py-2.5 rounded-full text-sm font-semibold transition-colors border border-white/20 ">
+            <button onClick={() => {
+              setShowLogin(!showLogin);
+              setSidebarOpen(false);
+            }}
+              className="w-full bg-[#212121] text-white mt-2 py-2.5 rounded-full text-sm font-semibold transition-colors border border-white/20 ">
               Log in
             </button>
           </footer>

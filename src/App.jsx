@@ -35,6 +35,8 @@ export default function App() {
   const [userName, setUserName] = useState(() => {
     return localStorage.getItem("username") || "";
   });
+
+
   return (
     <userNameContext.Provider value={{ userName, setUserName }}>
       <NewUserContext.Provider value={{ isNewUser, setIsNewUser }}>
