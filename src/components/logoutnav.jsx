@@ -20,7 +20,6 @@ export default function LogoutNav() {
                     </button>
                     {dropdownOpen && <div className="fixed inset-0 z-10" onClick={() => setDropdownOpen(false)}></div>}
                     <div onClick={() => setDropdownOpen(!dropdownOpen)} className=" relative text-lg flex gap-2 items-center font-semibold p-2 rounded-md hover:bg-[#303030] transition-colors select-none"><span>ChatGPT</span><ChevronDown size={"20px"} color="#AFAFAF" />
-
                     </div>
                     {dropdownOpen && (
                         <div className="absolute rounded-xl top-16 w-[320px] left-68 bg-[#353535] border border-white/10 shadow-lg z-[20]">

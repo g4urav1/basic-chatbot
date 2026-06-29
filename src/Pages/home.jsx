@@ -52,6 +52,10 @@ export default function Home() {
         { role: "assistant", content: data.content }
       ]);
     } catch (error) {
+       setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "🟥Server Error" }
+      ])
       console.error(error);
     } finally {
       setIsTyping(false);
