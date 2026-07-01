@@ -68,6 +68,7 @@ export default function AccDropdown() {
                     <li onClick={() => {
                         localStorage.removeItem("email")
                         localStorage.removeItem("isLoggedIn");
+                        localStorage.removeItem("username")
                         setIsLoggedIn(false);
                         setMessages([])
                     }} className=" py-1 flex items-center gap-2 hover:bg-white/5 rounded-lg cursor-pointer transition-colors overflow-hidden">

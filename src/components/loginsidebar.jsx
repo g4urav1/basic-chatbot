@@ -32,6 +32,8 @@ export default function LoginSidebar() {
         return () => window.removeEventListener("resize", checkScreenSize);
     }, [setIsMobile]);
 
+    const displayName= localStorage.getItem("username")
+
     return (
         <>
             {sidebarOpen && isMobile && (
@@ -181,7 +183,7 @@ export default function LoginSidebar() {
                         <div className="flex gap-2 items-center">
                             <div className="rounded-full bg-orange-500 w-6 h-6"></div>
                             <div>
-                                <div>{userName}</div>
+                                <div>{displayName}</div>
                                 <div className="text-xs text-gray-300">Plan</div>
                             </div>
                         </div>

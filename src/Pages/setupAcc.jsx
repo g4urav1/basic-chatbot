@@ -79,6 +79,7 @@ export default function SetupAcc() {
                 alert(data.message);
                 setUserName(name)
                 localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("username", name);
                 setIsLoggedIn(true);
                 navigate("/")
             } else {

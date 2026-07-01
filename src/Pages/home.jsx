@@ -5,7 +5,7 @@ import LoginNav from "../components/loginnav";
 import LoginSidebar from "../components/loginsidebar";
 import LogoutSidebar from "../components/logoutsidebar";
 import LoginPage from "../components/loginpage";
-import ReactMarkown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { LoginBoxContext, LoginContext, MessagesContext, MobileContext, SidebarContext } from "../context/context";
 
 
@@ -126,15 +126,15 @@ export default function Home() {
               {messages.map((msg, index) => (
                 <div
                   key={index}
-                  className={`prose dark:prose-invert text-white p-3 px-4 rounded-full max-w-[80%]
+                  className={`prose dark:prose-invert text-white p-4 rounded-[20px] max-w-[80%]
                    ${msg.role === "user"
                       ? "bg-[#2B2B2B] self-end"
                       : "bg-transparent self-start"
                     }`}
                 >
-                  <ReactMarkown >
+                  <ReactMarkdown >
                     {msg.content}
-                  </ReactMarkown>
+                  </ReactMarkdown>
                 </div>
               ))}
 
@@ -152,9 +152,9 @@ export default function Home() {
                 className={`prose dark:prose-invert text-white p-3 px-4 
   rounded-full max-w-[80%] bg-transparent self-start`}
               >
-                <ReactMarkown >
+                <ReactMarkdown >
                   {streamingRespoonse}
-                </ReactMarkown>
+                </ReactMarkdown>
               </div>}
 
             </div>
