@@ -4,7 +4,7 @@ import Home from "./Pages/home";
 import LoginAuth from "./Pages/loginauth";
 import Parent from "./Pages/parent";
 import "./App.css"
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
 
 import { NewUserContext, SidebarContext, mailContext, MessagesContext, LoginContext, MobileContext, LoginBoxContext, userNameContext } from "./context/context"
 import SetupAcc from "./Pages/setupAcc";
