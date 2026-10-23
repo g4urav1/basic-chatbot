@@ -1,0 +1,46 @@
+# ChatBot Backend
+
+Backend API for a chatbot app, built with Node.js, Express, MongoDB, and OpenRouter (via the OpenAI SDK).
+
+## What it does
+
+- `POST /login` — sends a 6-digit OTP to the given email
+- `POST /loginAuth` — verifies the OTP
+- `POST /loginAuthbyPass` — logs in with email + password instead of OTP
+- `POST /createPassword` — sets a password for a user
+- `POST /profile_info` — saves name and age for a user
+- `POST /chat` — sends a message to an AI model and streams back the reply
+
+## Setup
+
+1. Clone the repo and install packages:
+   ```bash
+   git clone https://github.com/g4urav1/chatBotbackend.git
+   cd chatBotbackend
+   npm install
+   ```
+
+2. Create a `.env` file in the project root:
+   ```env
+   MONGO_URI=your_mongodb_connection_string
+   MAIL_USER=your_gmail_address@gmail.com
+   MAIL_PASS=your_gmail_app_password
+   KEY=your_openrouter_api_key
+   port=3000
+   ```
+   (`MAIL_PASS` must be a Gmail **App Password**, not your normal password. `KEY` is your [OpenRouter](https://openrouter.ai/) API key.)
+
+3. Start the server:
+   ```bash
+   node index.js
+   ```
+
+## Known issues
+
+- Passwords are stored and compared as plain text — not secure yet.
+- `createPassword` and `profile_info` will crash if the user doesn't already exist in the database.
+- No `npm start` script — run with `node index.js` directly.
+
+## Tech used
+
+Express, Mongoose, Nodemailer, OpenAI SDK (via OpenRouter), dotenv, cors
