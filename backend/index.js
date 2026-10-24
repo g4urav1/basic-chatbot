@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import mongoose from "mongoose";
-
+ 
 const app = express();
 
 app.use(cors());
